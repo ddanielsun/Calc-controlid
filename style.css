@@ -1,0 +1,76 @@
+.bg-calc {
+  background-image: url(banner1.jpg);
+  background-position: right;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+}
+
+.glyphicon {
+  color: #ff9900 !important;
+}
+
+.title-h2 {
+  color: #b61624;
+}
+
+.title-h3 {
+  color: #b61624;
+  font-weight: 700;
+}
+
+.text-p {
+  color: #6d6d6d;
+}
+
+.text-p-red {
+  color: #b61624;
+}
+
+.bg-red {
+  background-color: #b61624 !important;
+}
+
+.border-rad {
+  border-radius: 15px;
+}
+
+.p-grey {
+  color: #6d6d6d !important;
+}
+
+.input-grey {
+  color: #666;
+}
+
+.form-control:focus {
+  color: #666;
+}
+
+@media (max-width: 770px) {
+  th.title-table {
+    width: 60% !important;
+  }
+  .row-resp {
+    width: 56% !important;
+  }
+}
+
+.title-table {
+  font-weight: 400;
+  width: 60%;
+}
+
+.row-resp {
+  width: 80%;
+}
+
+.value_off {
+  color: #ccc;
+}
+
+input::placeholder {
+  opacity: 1 !important;
+  color: #bcbcbc !important;
+}
