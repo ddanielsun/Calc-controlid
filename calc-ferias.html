@@ -147,3 +147,107 @@
                 </div>
             </div>
         </div>
+
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+
+    <style>
+    .bg-calc {
+      background-image: url(banner1.jpg);
+      background-position: right;
+      /* Center the image */
+      background-repeat: no-repeat;
+      /* Do not repeat the image */
+      background-size: cover;
+    }
+
+    .glyphicon {
+      color: #ff9900 !important;
+    }
+
+    .title-h2 {
+      color: #b61624;
+    }
+
+    .title-h3 {
+      color: #b61624;
+      font-weight: 700;
+    }
+
+    .text-p {
+      color: #6d6d6d;
+    }
+
+    .text-p-red {
+      color: #b61624;
+    }
+
+    .bg-red {
+      background-color: #b61624 !important;
+    }
+
+    .border-rad {
+      border-radius: 15px;
+    }
+
+    .p-grey {
+      color: #6d6d6d !important;
+    }
+
+    .input-grey {
+      color: #666;
+    }
+
+    .form-control:focus {
+      color: #666;
+    }
+
+    @media (max-width: 770px) {
+      th.title-table {
+        width: 60% !important;
+      }
+      .row-resp {
+        width: 56% !important;
+      }
+    }
+
+    .title-table {
+      font-weight: 400;
+      width: 60%;
+    }
+
+    .row-resp {
+      width: 80%;
+    }
+
+    .value_off {
+      color: #ccc;
+    }
+
+    input::placeholder {
+      opacity: 1 !important;
+      color: #bcbcbc !important;
+    }
+    </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
+<script>
+var calculadora=new Vue({el:"#calc",data:{teste:!0,calc:{diasFer:"",diasAbon:"",adiantamento13:0,numDep:0,salBase:"",remVal:0},proventos:{},error:[],descontos:{},flagCalculo:!1,flagVal:!1},methods:{calculaRescisao:function(a){if(a.preventDefault(),this.flagCalculo=!1,this.removeMask(),this.removeTableMask(),!this.verificaCampos()){var e=this;this.proventos={saldoFer:this.calcSalFer(),adc1_3Fer:this.calcFer1_3(),abonoPec:this.calcAbonPecu(),abonoPec1_3:this.calcAbonoPecu1_3(),parc1_3:this.calcAdian1_3Sal(),INSS:this.calcDescINSS(),IRRF:this.calcDescIRFF(),total:this.calcTotal()},setTimeout(function(){e.flagCalculo=!0},900),setTimeout(function(){e.tableMask()},1e3)}},removeMask:function(){var a=jQuery("#salBase").cleanVal()/100;this.calc.salBase=a;a=jQuery("#remVal").cleanVal()/100;this.calc.remVal=a},tableMask:function(){jQuery(".money").mask("000.000.000.000,00",{reverse:!0})},removeTableMask:function(){jQuery(".money").unmask("000.000.000.000,00",{reverse:!0})},limpaRescisao:function(a){a.preventDefault(),jQuery("#salBase").val(""),jQuery("#remVal").val(""),this.flagCalculo=!1,this.fillForm(),this.limpaVal()},calcTotal:function(){return(parseFloat(this.calcSalFer())+parseFloat(this.calcFer1_3())+parseFloat(this.calcAbonPecu())+parseFloat(this.calcAbonoPecu1_3())+parseFloat(this.calcAdian1_3Sal())-parseFloat(this.calcDescINSS())-parseFloat(this.calcDescIRFF())).toFixed(2)},calcSalFer:function(){return((parseFloat(this.calc.salBase)+parseFloat(this.calc.remVal))/30*parseFloat(this.calc.diasFer)).toFixed(2)},calcFer1_3:function(){return(this.calcSalFer()/3).toFixed(2)},calcAbonPecu:function(){return((parseFloat(this.calc.salBase)+parseFloat(this.calc.remVal))/30*parseInt(this.calc.diasAbon)).toFixed(2)},calcAbonoPecu1_3:function(){return(this.calcAbonPecu()/3).toFixed(2)},calcAdian1_3Sal:function(){if(this.calc.adiantamento13){return(parseFloat(this.calc.salBase)/2).toFixed(2)}return 0},calcDescINSS:function(){var a=parseFloat(this.calcSalFer())+parseFloat(this.calcFer1_3()),e=0;return a>=1100?(e+=82.5,(a-=1100)>=1103.48?(e+=99.31,(a-=1103.48)>=1101.74?(e+=132.21,(a-=1101.74)>=3128.35?(e+=437.97,a-=3128.35):e+=.14*a):e+=.12*a):e+=.09*a):e+=.075*a,""!=e?e.toFixed(2):"-"},calcDescIRFF:function(){var a=parseFloat(this.calcSalFer())+parseFloat(this.calcFer1_3()),e=189.59*parseFloat(this.calc.numDep);if(e>a)return 0;var r=a-e-parseFloat(this.calcDescINSS()),t=0;return r>=1903.98?(t+=0,(r-=1903.98)>=922.67?(t+=69.2,(r-=922.67)>=924.4?(t+=138.66,(r-=924.4)>=913.63?(t+=205.57,t+=.275*(r-=913.63)):t+=.225*r):t+=.15*r):t+=.075*r):t+=0*r,t.toFixed(2)},fillForm:function(){this.calc={diasFer:"",diasAbon:"",adiantamento13:0,numDep:0,salBase:"",remVal:0}},limpaVal:function(){jQuery("#salBase").attr({style:"border:1px solid #ced4da"}),jQuery("#appendUltSal").remove(),jQuery("#remVal").attr({style:"border:1px solid #ced4da"}),jQuery("#appendDataAdm").remove(),jQuery("#numDep").attr({style:"border:1px solid #ced4da"}),jQuery("#appendDataRec").remove(),jQuery("#appendDataRecM").remove(),jQuery("#diasAbon").attr({style:"border:1px solid #ced4da"}),jQuery("#appendMotRec").remove(),jQuery("#diasFer").attr({style:"border:1px solid #ced4da"}),jQuery("#appendDataFinal").remove()},verificaCampos:function(){return this.error=[],""==this.calc.diasFer?(jQuery("#appendUltSal").remove(),jQuery("#diasFer").attr({style:"border:1px solid red!important"}).parent().parent().append('<span id="appendUltSal" style="color:red;font-size:11px">Campo Obrigatorio</span>'),this.error.push("Valor do ultimo salário obrigatorio")):(jQuery("#diasFer").attr({style:"border:1px solid #ced4da"}),jQuery("#appendUltSal").remove()),""==this.calc.diasAbon?(jQuery("#appendDataAdm").remove(),jQuery("#diasAbon").attr({style:"border:1px solid red!important"}).parent().parent().append('<span id="appendDataAdm" style="color:red;font-size:11px">Campo Obrigatorio</span>'),this.error.push("Data de adm obrigatoria")):(jQuery("#diasAbon").attr({style:"border:1px solid #ced4da"}),jQuery("#appendDataAdm").remove()),""===this.calc.numDep?(this.error.push("Data de Rec obrigatoria"),jQuery("#appendDataRec").remove(),jQuery("#numDep").attr({style:"border:1px solid red"}).parent().parent().append('<span id="appendDataRec" style="color:red;font-size:11px">Campo Obrigatorio</span>')):(jQuery("#numDep").attr({style:"border:1px solid #ced4da"}),jQuery("#appendDataRec").remove()),""==this.calc.salBase?(jQuery("#appendMotRec").remove(),jQuery("#salBase").attr({style:"border:1px solid red!important"}).parent().parent().append('<span id="appendMotRec" style="color:red;font-size:11px">Campo Obrigatorio</span>')):(this.flagVal=!1,jQuery("#salBase").attr({style:"border:1px solid #ced4da"}),jQuery("#appendMotRec").remove()),this.error.length>0}},filters:{moneyMask:function(a){return a.mask("###.###.###.###,00",{reverse:!0}),a}},mounted:function(){jQuery("#salBase").mask("###.###.###.###,00",{reverse:!0}),jQuery("#remVal").mask("###.###.###.###,00",{reverse:!0})}});
+</script>
